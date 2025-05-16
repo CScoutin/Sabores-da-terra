@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabores da Terra | Gastronomia Autêntica</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2c5e1a;
+      --secondary-color: #d4a762;
+      --accent-color: #9b2915;
+      --light-bg: #f9f5f0;
+      --dark-text: #333;
+      --light-text: #f8f8f8;
+      --border-radius: 8px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      color: var(--dark-text);
+      line-height: 1.6;
+      background-color: var(--light-bg);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 20px;
+      background: var(--primary-color);
+      color: var(--light-text);
+      font-weight: 500;
+      width: 100%;
+      transition: all 0.5s ease;
+      z-index: 1000;
+    }
+
+    .navbar span {
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .navbar span:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .navbar.bottom {
+      position: fixed;
+      bottom: 0;
+    }
+
+    .navbar.fixed {
+      position: fixed;
+      top: 0;
+      bottom: auto;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 80px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section.dark {
+      background-color: var(--primary-color);
+      color: var(--light-text);
+    }
+
+    .section-content {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 50px;
+      text-align: center;
+      position: relative;
+      letter-spacing: 1px;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--secondary-color);
+      margin: 20px auto;
+    }
+
+    .dark h2::after {
+      background: var(--light-text);
+    }
+
+    .menu-categories {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .menu-category {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .menu-category h3 {
+      font-size: 1.6rem;
+      color: var(--secondary-color);
+      margin-bottom: 25px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .dark .menu-category h3 {
+      color: var(--light-text);
+      border-bottom-color: #555;
+    }
+
+    .menu-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      align-items: center;
+      background: rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-item:hover {
+      background: rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .menu-item h4 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+      color: var(--dark-text);
+    }
+
+    .dark .menu-item h4 {
+      color: var(--light-text);
+    }
+
+    .menu-item p {
+      margin: 0 0 8px 0;
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .dark .menu-item p {
+      color: #ccc;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--secondary-color);
+      font-size: 1.1rem;
+    }
+
+    .chef-profile {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .chef-profile img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 5px solid var(--secondary-color);
+    }
+
+    .chef-bio {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .chef-bio h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .chef-bio p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* NOVO FORMULÁRIO DE RESERVA */
+    #reservation-form {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .section-title {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .section-title::before {
+      content: "";
+      width: 30px;
+      height: 4px;
+      background-color: var(--secondary-color);
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      flex: 1;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(212, 167, 98, 0.2);
+    }
+
+    #submit-button {
+      background-color: var(--primary-color);
+      color: var(--light-text);
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 16px 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 20px;
+      letter-spacing: 0.5px;
+    }
+    
+    #submit-button:hover {
+      background-color: #1e3f12;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .contact-info > div {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .dark .contact-info h3 {
+      color: var(--light-text);
+    }
+
+    .contact-info h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+    }
+
+    .contact-info p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 1.8rem;
+      margin-top: 40px;
+    }
+
+    .social-links a {
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--secondary-color);
+      transform: translateY(-5px);
+    }
+
+    footer {
+      background: #1e3f12;
+      color: var(--light-text);
+      text-align: center;
+      padding: 30px;
+      font-size: 1rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        gap: 15px;
+        padding: 15px;
+        font-size: 0.9rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      h2 {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+      }
+      
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .menu-item img {
+        width: 100%;
+        height: 180px;
+      }
+      
+      .chef-profile img {
+        width: 250px;
+        height: 250px;
+      }
+      
+      #reservation-form {
+        padding: 30px;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .contact-info {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .navbar span {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .menu-category {
+        min-width: 100%;
+      }
+      
+      #reservation-form {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Sabores da Terra</h1>
+      <p>Experiências gastronômicas que celebram a autenticidade</p>
+      <button class="reserva-btn" id="heroReserva">Faça sua reserva</button>
+    </div>
+  </div>
+
+  <div class="navbar" id="navbar">
+    <span data-section="about">Sobre Nós</span>
+    <span data-section="menu">Cardápio</span>
+    <span data-section="chef">Nosso Chef</span>
+    <span data-section="reservations">Reservas</span>
+    <span data-section="contact">Contato</span>
+  </div>
+
+  <div class="section" id="about">
+    <div class="section-content">
+      <h2>Sobre o Sabores da Terra</h2>
+      <p>Fundado em 2019, o Sabores da Terra nasceu da paixão por ingredientes locais e técnicas tradicionais reinventadas. Nosso restaurante oferece uma jornada sensorial através da culinária brasileira com toques contemporâneos.</p>
+      <p>Todos os nossos pratos são preparados com ingredientes sazonais, provenientes de produtores locais que compartilham nosso compromisso com a qualidade e sustentabilidade. Nossa missão é proporcionar uma experiência gastronômica memorável, onde cada detalhe conta.</p>
+      <p>Com um ambiente acolhedor e serviço atencioso, buscamos criar momentos especiais para nossos clientes, celebrando a riqueza de sabores que nossa terra oferece.</p>
+    </div>
+  </div>
+
+  <div class="section dark" id="menu">
+    <div class="section-content">
+      <h2>Nosso Cardápio</h2>
+      <div class="menu-categories">
+        <div class="menu-category">
+          <h3>Entradas</h3>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Carpaccio de beterraba">
+            <div class="item-info">
+              <h4>Carpaccio de beterraba com queijo de cabra</h4>
+              <p>Finas fatias de beterraba marinadas com raspas de queijo de cabra, nozes caramelizadas e redução de balsâmico</p>
+              <span class="price">R$ 32,90</span>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Bolinho de feijoada">
+            <div class="item-info">
+              <h4>Bolinho de feijoada com redução de laranja</h4>
+              <p>Croquetes crocantes de feijoada com molho cítrico de laranja e couve crispy</p>
+              <span class="price">R$ 36,00</span>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Bruschetta">
+            <div class="item-info">
+              <h4>Bruschetta de pão artesanal</h4>
+              <p>Pão rústico com tomates confit, manjericão fresco e azeite de ervas</p>
+              <span class="price">R$ 28,50</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="menu-category">
+          <h3>Pratos Principais</h3>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Filé mignon">
+            <div class="item-info">
+              <h4>Filé mignon com purê de mandioquinha</h4>
+              <p>200g de filé mignon ao ponto com purê cremoso de mandioquinha, cogumelos salteados e redução de vinho tinto</p>
+              <span class="price">R$ 89,90</span>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Risoto de pequi">
+            <div class="item-info">
+              <h4>Risoto de pequi com torresmo de pacu</h4>
+              <p>Risoto cremoso com fruto típico do cerrado, finalizado com torresmo crocante de pacu e couve-flor assada</p>
+              <span class="price">R$ 72,00</span>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Moqueca">
+            <div class="item-info">
+              <h4>Moqueca de camarão com pirão</h4>
+              <p>Camarões frescos preparados no tradicional cozimento baiano com azeite de dendê, leite de coco e pimentões, servido com pirão de camarão</p>
+              <span class="price">R$ 78,50</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="menu-category">
+          <h3>Sobremesas</h3>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Brigadeiro de cupuaçu">
+            <div class="item-info">
+              <h4>Brigadeiro de cupuaçu com castanha</h4>
+              <p>Doce tradicional com sabor amazônico, acompanhado de castanhas crocantes e calda de frutas vermelhas</p>
+              <span class="price">R$ 22,90</span>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Torta de limão">
+            <div class="item-info">
+              <h4>Torta de limão siciliano com merengue</h4>
+              <p>Clássico com toque especial de merengue italiano e raspas de limão fresco</p>
+              <span class="price">R$ 25,50</span>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Pudim">
+            <div class="item-info">
+              <h4>Pudim de leite com calda de caramelo</h4>
+              <p>Receita tradicional com textura cremosa e calda dourada</p>
+              <span class="price">R$ 18,90</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <button class="reserva-btn">Ver Cardápio Completo</button>
+    </div>
+  </div>
+
+  <div class="section" id="chef">
+    <div class="section-content">
+      <h2>Nosso Chef</h2>
+      <div class="chef-profile">
+        <img src="" alt="Chef Guilherme Simon">
+        <div class="chef-bio">
+          <h3>Guilherme Coutinho Simon</h3>
+          <p>Com mais de 15 anos de experiência em cozinhas ao redor do mundo, o Chef Guilherme Simon traz para o Sabores da Terra sua visão única que combina técnicas internacionais com ingredientes brasileiros.</p>
+          <p>Formado pelo Le Cordon Bleu em Paris, Guilherme já trabalhou em restaurantes estrelados como o D.O.M. de Alex Atala e o Noma na Dinamarca, antes de criar seu próprio conceito gastronômico.</p>
+          <p>"Minha filosofia é simples: respeitar os ingredientes locais, valorizar os produtores regionais e transformar o ato de comer em uma experiência memorável. Cada prato conta uma história da nossa terra."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section dark" id="reservations">
+    <div class="section-content">
+      <h2>Faça sua Reserva</h2>
+      <form id="reservation-form">
+        <!-- Seção de Dados Pessoais -->
+        <div class="form-section">
+          <h2 class="section-title">Dados Pessoais</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+            </div>
+            
+            <div class="form-group">
+              <label for="pessoas">Número de Pessoas</label>
+              <select id="pessoas" name="pessoas" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="1">1 pessoa</option>
+                <option value="2">2 pessoas</option>
+                <option value="3">3 pessoas</option>
+                <option value="4">4 pessoas</option>
+                <option value="5">5-8 pessoas</option>
+                <option value="9">9+ pessoas (grupo especial)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Seção de Data e Horário -->
+        <div class="form-section">
+          <h2 class="section-title">Data e Horário</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="data">Data da Reserva</label>
+              <input type="date" id="data" name="data" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="horario">Horário Preferido</label>
+              <select id="horario" name="horario" required>
+                <option value="" disabled selected>Selecione um horário</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Seção de Observações -->
+        <div class="form-section">
+          <h2 class="section-title">Observações Especiais</h2>
+          
+          <div class="form-group">
+            <label for="observacoes">Alergias, restrições ou comemorações</label>
+            <textarea id="observacoes" name="observacoes" rows="4" placeholder="Informe qualquer necessidade especial, alergia alimentar ou se estiver comemorando alguma ocasião especial"></textarea>
+          </div>
+        </div>
+        
+        <button type="submit" id="submit-button">Confirmar Reserva</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="section-content">
+      <h2>Contato</h2>
+      <div class="contact-info">
+        <div>
+          <h3>Endereço</h3>
+          <p>Rua das Aromáticas, 123<br>Jardim das Especiarias<br>São Paulo - SP<br>CEP: 04548-020</p>
+          <p>Estacionamento conveniado disponível</p>
+        </div>
+        <div>
+          <h3>Horário de Funcionamento</h3>
+          <p>Terça a Quinta: 19h - 23h<br>Sexta e Sábado: 19h - 00h<br>Domingo: 12h - 16h<br>Segunda-feira: Fechado</p>
+        </div>
+        <div>
+          <h3>Telefone & E-mail</h3>
+          <p>(11) 98765-4321<br>(11) 2345-6789</p>
+          <p>contato@saboresdaterra.com.br<br>reservas@saboresdaterra.com.br</p>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Sabores da Terra. Todos os direitos reservados.</p>
+    <p>Desenvolvido com ♥ por sua equipe</p>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navItems = document.querySelectorAll('.navbar span');
+    const heroReservaBtn = document.getElementById('heroReserva');
+
+    // Smooth scroll para as seções
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const sectionId = item.getAttribute('data-section');
+        document.getElementById(sectionId).scrollIntoView({
+          behavior: 'smooth'
+        });
+        
+        // Atualiza a URL sem recarregar a página
+        history.pushState(null, null, `#${sectionId}`);
+      });
+    });
+
+    // Scroll para reservas a partir do botão do hero
+    heroReservaBtn.addEventListener('click', () => {
+      document.getElementById('reservations').scrollIntoView({
+        behavior: 'smooth'
+      });
+      history.pushState(null, null, '#reservations');
+    });
+
+    // Comportamento da navbar no scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight / 2) {
+        navbar.classList.add('fixed');
+        navbar.classList.remove('bottom');
+      } else {
+        navbar.classList.remove('fixed');
+        navbar.classList.add('bottom');
+      }
+    });
+
+    // Verifica o hash na carga da página
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        const section = document.getElementById(sectionId);
+        if (section) {
+          setTimeout(() => {
+            section.scrollIntoView();
+          }, 100);
+        }
+      }
+    });
+
+    // Validação básica do formulário
+    const reservaForm = document.getElementById('reservation-form');
+    if (reservaForm) {
+      reservaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Validação simples
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const telefone = document.getElementById('telefone').value;
+        
+        if (!nome || !email || !telefone) {
+          alert('Por favor, preencha todos os campos obrigatórios.');
+          return;
+        }
+        
+        // Simulação de envio
+        alert('Reserva enviada com sucesso! Entraremos em contato para confirmação.');
+        reservaForm.reset();
+        
+        // Rolagem suave para o topo
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  </script>
+</body>
+</html>
